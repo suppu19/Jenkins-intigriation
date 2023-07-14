@@ -12,7 +12,7 @@ agent any
                 sh "mvn clean package"
             }
         } 
-         
+
                 
         stage("sonarqube"){
             steps {
@@ -24,7 +24,10 @@ agent any
                 }
             }
         }
-    //    stage ("s3-upload"){
+    } 
+     
+     
+     //    stage ("s3-upload"){
     //              entries: [
     //                 [bucket: 'maven-web-application',
     //                  excludedFile: '',
