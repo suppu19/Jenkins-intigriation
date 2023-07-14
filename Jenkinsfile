@@ -18,7 +18,7 @@ agent any
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonar-tocken') {
-                        sh "mvn admingi:sonar"
+                        sh "mvn admin:sonar"
                         }
 
                 }
