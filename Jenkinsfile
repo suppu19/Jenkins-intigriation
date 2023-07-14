@@ -4,12 +4,9 @@ node {
     }
         echo "=======================================Checking Out Code from Github======================================="
        
-        stage('Git Checkout') {
+        
        
-        git branch: 'main', credentialsId: 'Github', url: 'https://github.com/suppu19/project1.git'
        
-        echo "=======================================Pulled Code from Github======================================="   
-    }
    
     echo "=========================================Building Maven Project=========================================="
    
