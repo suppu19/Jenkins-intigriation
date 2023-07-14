@@ -28,7 +28,7 @@ agent any
         
     } 
      
-     c
+     
      //    stage ("s3-upload"){
     //              entries: [
     //                 [bucket: 'maven-web-application',
