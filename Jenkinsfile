@@ -1,20 +1,25 @@
-node {
+pipeline{
+ageny any 
+    stages{
     stage('test') {
+        steps{
         echo 'Knowledge Is Free'
-    }
+    
         echo "=======================================Checking Out Code from Github======================================="
-       
-        
+    }  
+    }    
        
        
    
-    echo "=========================================Building Maven Project=========================================="
+    
    
     stage('Maven Build') {
-       
+         steps{   
             sh "mvn clean package"
 
        
     
+    }
+}
     }
 }
