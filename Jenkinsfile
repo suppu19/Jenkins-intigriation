@@ -17,16 +17,18 @@ agent any
         stage("sonarqube"){
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'sonar-tocken') {
+                    withSonarQubeEnv(credentialsId: 'newsonar-tocken') {
                         sh "mvn sonar:sonar"
                         }
 
                 }
             }
         }
+
+        
     } 
      
-     
+     c
      //    stage ("s3-upload"){
     //              entries: [
     //                 [bucket: 'maven-web-application',
