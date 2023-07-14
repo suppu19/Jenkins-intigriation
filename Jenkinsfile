@@ -1,30 +1,32 @@
 pipeline{
 agent any 
     stages{
-    stage('test') {
-        steps{
-        echo 'Knowledge Is Free'
-    
-        echo "=======================================Checking Out Code from Github======================================="
-    }  
-    }    
-       
-       
-   
-    
-   
-    stage('Maven Build') {
-         steps{   
-            sh "mvn clean package"
+        stage('test') {
+            steps{
+                echo 'Knowledge Is Free'
+                echo "=======================================Checking Out Code from Github======================================="
+            }  
+        }
+         stage('Maven Build') {
+            steps{   
+                sh "mvn clean package"
+            }
+        }  
+          
+        stage("sonarqube"){
+            steps {
+                script {
+                    withSonarQubeEnv(credentialsId: 'sonar-tocken') {
+                        sh "mvn sonar:sonar"
+                        }
 
-       
-    
-    }
-}
-stage ("s3-upload"){
-      steps{
-        s3Upload consoleLogLevel: 'INFO',
-                 dontSetBuildResultOnFailure: false,
+                }
+            }
+        }
+       stage ("s3-upload"){
+            steps{
+                s3Upload consoleLogLevel: 'INFO',
+                dontSetBuildResultOnFailure: false,
                  dontWaitForConcurrentBuildCompletion: false,
                  entries: [
                     [bucket: 'maven-web-application',
@@ -43,7 +45,8 @@ stage ("s3-upload"){
                     ], pluginFailureResultConstraint: 'FAILURE',
                        profileName: 'maven-web-application',
                        userMetadata: []
-      }
+                }
+            }
+        }
     }
-    }
-}
+
